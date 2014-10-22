@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var count;
 	var number;
 	var userGuess;
+	var prevGuess;
 	var found = false;
 
 	/*-- Start new game --*/
@@ -20,7 +21,13 @@ $(document).ready(function() {
 				count++;
 				setCount(count);
 				$("ul#guessList").append("<li>" + userGuess + "</li>");
-				checkDifference(Math.abs(number - userGuess));
+				if (count == 0){
+					checkDifference(Math.abs(number - userGuess));
+				} else {
+					//prevGuess = userGuess;
+					//checkPreviousGuess(Math.abs(number - prevGuess));
+					checkDifference(Math.abs(number - userGuess));
+				}
 			};
 		} else {
 			setUserFeedback("You already won this game. Click 'New Game' to start another game.");
@@ -64,6 +71,10 @@ $(document).ready(function() {
 		} else {
 			setUserFeedback("Your Guess is ice cold!");
 		}
+	}
+
+	function checkPreviousGuess(prevGuess) {
+
 	}
 
 	/*-- Set the feedback --*/

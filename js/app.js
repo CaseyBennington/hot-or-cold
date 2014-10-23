@@ -12,22 +12,22 @@ $(document).ready(function() {
 	$("form").submit(function(e) {
 		e.preventDefault();
     	if (!found) {
+    		prevGuess = userGuess;
 			userGuess = $('#userGuess').val();
 			clearGuess();
 			setFocus();
 			if (isNaN(userGuess) || userGuess < 1 || userGuess > 100 || userGuess%1 != 0) {
 				setUserFeedback("Please enter a number between 1 and 100.");
 			} else {
-				count++;
-				setCount(count);
-				$("ul#guessList").append("<li>" + userGuess + "</li>");
 				if (count == 0){
 					checkDifference(Math.abs(number - userGuess));
 				} else {
-					//prevGuess = userGuess;
-					//checkPreviousGuess(Math.abs(number - prevGuess));
-					checkDifference(Math.abs(number - userGuess));
+					checkPreviousGuess(prevGuess, userGuess);
+					//checkDifference(Math.abs(number - userGuess));
 				}
+				count++;
+				setCount(count);
+				$("ul#guessList").append("<li>" + userGuess + "</li>");
 			};
 		} else {
 			setUserFeedback("You already won this game. Click 'New Game' to start another game.");
@@ -73,8 +73,16 @@ $(document).ready(function() {
 		}
 	}
 
-	function checkPreviousGuess(prevGuess) {
-
+	/*-- check if the new guess is closer or farther from previous guess --*/
+	function checkPreviousGuess(prevGuess, userGuess) {
+		if (Math.abs(number - userGuess) == 0) {
+			setUserFeedback("You guessed the correct number!");
+			found = true;
+		} else if (Math.abs(number - userGuess) <= Math.abs(number - prevGuess)) {
+			setUserFeedback("Your Guess is now warmer!");
+		} else {
+			setUserFeedback("Your Guess is now colder!");
+		}
 	}
 
 	/*-- Set the feedback --*/

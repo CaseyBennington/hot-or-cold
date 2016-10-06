@@ -1,8 +1,8 @@
 [![See it live.](hotorcold.png)](http://caseybennington.github.io/hot-or-cold/)
-#hot-or-cold
+# Hot-or-cold
 ===========
 
 FEWD Hot or Cold Project
-Hot or Cold Number Guessing Game
+A Hot or Cold number guessing game
 
 [See it here.](http://caseybennington.github.io/hot-or-cold/)
